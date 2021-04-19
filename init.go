@@ -5,7 +5,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
-	"time"
+	_ "time"
 )
 
 const (
@@ -22,7 +22,7 @@ func DB() *gorm.DB {
 }
 
 //db baglantısını gerceklestirecegimiz alan
-func Connect() {
+func init() {
 	vt := fmt.Sprintf("host=%s user=%s password=%s dbname=%s sslmode=disable", HOST, USER, PASSWORD, DATABASE)
 	var err error
 	db, err = gorm.Open(postgres.Open(vt), &gorm.Config{
@@ -31,6 +31,7 @@ func Connect() {
 	if err != nil {
 		fmt.Println(err)
 	}
+
 	//sqlDB, _ := db.DB()
 	//sqlDB.SetMaxOpenConns(10) //max bağlanılacak kişi sayısı
 }
