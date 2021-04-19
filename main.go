@@ -10,7 +10,7 @@ import (
 
 const (
 	HOST     = "localhost"
-	DATABASE = "DB"
+	DATABASE = "db-deneme"
 	USER     = "postgres"
 	PASSWORD = "1"
 )
@@ -44,15 +44,27 @@ type User struct {
 func main() {
 	Connect()
 	/*
-		db.AutoMigrate(&User{})
+		//db.AutoMigrate(&User{})
+		for i:=0;i<100;i++{
+			user := User{Name: "muhammed", Age: i, Birthday: time.Now()}
+			err := db.Create(&user).Error
+			if err != nil {
+				log.Fatal(err)
+			}
+		}
 		user := User{Name: "muhammed", Age: 36, Birthday: time.Now()}
 		err := db.Create(&user).Error
 		if err != nil {
 			log.Fatal(err)
 		}
 	*/
-	var user User
-	db.First(&user) //db deki ilk veriyi getirme işlemi yapıyor
+
+	var user []User
+
+	db.Find(&user) //db deki ilk veriyi getirme işlemi yapıyor
+	for index, usercik := range user {
+		fmt.Println(index, usercik)
+	}
 	fmt.Println(user)
 
 }
