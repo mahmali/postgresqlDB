@@ -5,7 +5,6 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/schema"
-	"log"
 	"time"
 )
 
@@ -32,8 +31,8 @@ func Connect() {
 	if err != nil {
 		fmt.Println(err)
 	}
-	sqlDB, _ := db.DB()
-	sqlDB.SetMaxOpenConns(10) //max bağlanılacak kişi sayısı
+	//sqlDB, _ := db.DB()
+	//sqlDB.SetMaxOpenConns(10) //max bağlanılacak kişi sayısı
 }
 
 type User struct {
@@ -44,12 +43,17 @@ type User struct {
 
 func main() {
 	Connect()
-	db.AutoMigrate(&User{})
-	user := User{Name: "Jinzhu", Age: 18, Birthday: time.Now()}
-	err := db.Create(&user).Error
-	if err != nil {
-		log.Fatal(err)
-	}
+	/*
+		db.AutoMigrate(&User{})
+		user := User{Name: "muhammed", Age: 36, Birthday: time.Now()}
+		err := db.Create(&user).Error
+		if err != nil {
+			log.Fatal(err)
+		}
+	*/
+	var user User
+	db.First(&user) //db deki ilk veriyi getirme işlemi yapıyor
+	fmt.Println(user)
 
 }
 
