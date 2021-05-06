@@ -14,7 +14,8 @@ type User struct {
 func main() {
 	var user []User
 
-	db.Find(&user) //db deki ilk veriyi getirme işlemi yapıyor
+	db.Find(&user)//db deki verileri getirme işlemi yapıyor
+	db.First(&user)// db deki ilk eşleşen veriyi gettirir
 	for index, usercik := range user {
 		fmt.Println(index, usercik)
 	}
