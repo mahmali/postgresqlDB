@@ -31,7 +31,10 @@ func init() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
+	/*if err != nil {
+		fmt.Println(err)
+	}
+	*/
 	//sqlDB, _ := db.DB()
 	//sqlDB.SetMaxOpenConns(10) //max bağlanılacak kişi sayısı
 }
